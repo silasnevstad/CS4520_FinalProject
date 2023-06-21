@@ -6,6 +6,9 @@ target 'ArtHaus' do
   use_frameworks!
 
   # Pods for ArtHaus
-pod 'Alamofire'
+  pod 'Alamofire'
+  pod 'FirebaseAuth'
+  pod 'FirebaseFirestore'
+  pod 'FirebaseStorage'
 
 end
