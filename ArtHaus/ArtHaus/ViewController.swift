@@ -8,20 +8,12 @@
 import UIKit
 
 class ViewController: UIViewController {
-
-    var movieTitles: [String]!
-
     private var loginScreen: LoginView!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Sign in"
+        title = "Sign Up/In"
         loginScreen = LoginView()
         view = loginScreen
-        
     }
-
-
 }
-

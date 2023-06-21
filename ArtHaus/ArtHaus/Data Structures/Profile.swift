@@ -7,15 +7,9 @@
 
 import Foundation
 struct Profile{
-    var userName:String
-    var email:String
-    var password: String
-    
-    init(userName: String, email: String, password: String) {
-        self.userName = userName
-        self.email = email
-        self.password = password
-    }
+    var uid: String
+    var userName: String
+    var email: String
 }
 
 

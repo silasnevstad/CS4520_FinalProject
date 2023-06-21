@@ -7,82 +7,101 @@
 
 import UIKit
 
+class LoginView: UIView {
 
+    let titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "ArtHaus"
+        label.font = UIFont.boldSystemFont(ofSize: 32)
+        label.textColor = .darkGray
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    let nameField: UITextField = {
+        let tf = UITextField()
+        tf.placeholder = "Name"
+        tf.borderStyle = .roundedRect
+        tf.translatesAutoresizingMaskIntoConstraints = false
+        return tf
+    }()
 
-    class LoginView: UIView {
-        var textFieldEmail: UITextField!
-        var textFieldPassword: UITextField!
-        var buttonLogIn: UIButton!
-        var buttonSignUp: UIButton!
+    let emailField: UITextField = {
+        let tf = UITextField()
+        tf.placeholder = "Email"
+        tf.borderStyle = .roundedRect
+        tf.translatesAutoresizingMaskIntoConstraints = false
+        return tf
+    }()
+    
+    let passwordField: UITextField = {
+        let tf = UITextField()
+        tf.placeholder = "Password"
+        tf.isSecureTextEntry = true
+        tf.borderStyle = .roundedRect
+        tf.translatesAutoresizingMaskIntoConstraints = false
+        return tf
+    }()
+    
+    let signInSignUpButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Sign In", for: .normal)
+        button.backgroundColor = .systemBlue
+        button.setTitleColor(.white, for: .normal)
+        button.layer.cornerRadius = 5
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    let switchAuthModeButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Don't have an account? Sign Up", for: .normal)
+        button.setTitleColor(.systemBlue, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        backgroundColor = .white
         
-        override init(frame: CGRect) {
-            super.init(frame: frame)
-            self.backgroundColor = .white
+        addSubview(titleLabel)
+        addSubview(nameField)
+        addSubview(emailField)
+        addSubview(passwordField)
+        addSubview(signInSignUpButton)
+        addSubview(switchAuthModeButton)
+        
+        NSLayoutConstraint.activate([
+            titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            titleLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 40),
             
-            setupTextFieldEmail()
-            setupTextFieldPassword()
-            setupButtonLogIn()
-            setupButtonSignUp()
-        
-            initConstraints()
-        }
-        
-        required init?(coder: NSCoder) {
-            fatalError("init(coder:) has not been implemented")
-        }
-        
-        func setupTextFieldEmail(){
-            textFieldEmail = UITextField()
-            textFieldEmail.placeholder = "Email:"
-            textFieldEmail.borderStyle = .roundedRect
-            textFieldEmail.translatesAutoresizingMaskIntoConstraints = false
-            self.addSubview(textFieldEmail)
-        }
-        func setupTextFieldPassword(){
-            textFieldPassword = UITextField()
-            textFieldPassword.placeholder = "Pasword:"
-            textFieldPassword.borderStyle = .roundedRect
-            textFieldPassword.translatesAutoresizingMaskIntoConstraints = false
-            self.addSubview(textFieldPassword)
-        }
-        
-        func setupButtonLogIn(){
-            buttonLogIn = UIButton(type: .system)
-            buttonLogIn.setTitle("Sign in", for: .normal)
-            buttonLogIn.translatesAutoresizingMaskIntoConstraints = false
-            self.addSubview(buttonLogIn)
+            nameField.centerXAnchor.constraint(equalTo: centerXAnchor),
+            nameField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 60),
+            nameField.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.8),
             
-        }
-        
-        func setupButtonSignUp(){
-            buttonSignUp = UIButton(type: .system)
-            buttonSignUp.setTitle("New User? Register Now!", for: .normal)
-            buttonSignUp.translatesAutoresizingMaskIntoConstraints = false
-            self.addSubview(buttonSignUp)
+            emailField.centerXAnchor.constraint(equalTo: centerXAnchor),
+            emailField.topAnchor.constraint(equalTo: nameField.bottomAnchor, constant: 20),
+            emailField.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.8),
             
+            passwordField.centerXAnchor.constraint(equalTo: centerXAnchor),
+            passwordField.topAnchor.constraint(equalTo: emailField.bottomAnchor, constant: 20),
+            passwordField.widthAnchor.constraint(equalTo: emailField.widthAnchor),
             
-        }
-        func initConstraints(){
-            NSLayoutConstraint.activate ([
-                textFieldEmail.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 16),
-                textFieldEmail.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-                textFieldEmail.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-                
-                textFieldPassword.topAnchor.constraint(equalTo: textFieldEmail.bottomAnchor, constant: 16),
-                textFieldPassword.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-                textFieldPassword.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-                
-                buttonLogIn.topAnchor.constraint(equalTo: textFieldPassword.bottomAnchor, constant: 16),
-                buttonLogIn.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-                buttonLogIn.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-                
-                buttonSignUp.topAnchor.constraint(equalTo: buttonLogIn.bottomAnchor, constant: 16),
-                buttonSignUp.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-                buttonSignUp.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            ])
-        }
+            signInSignUpButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+            signInSignUpButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: 40),
+            signInSignUpButton.widthAnchor.constraint(equalTo: passwordField.widthAnchor),
+            signInSignUpButton.heightAnchor.constraint(equalToConstant: 50),
+            
+            switchAuthModeButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+            switchAuthModeButton.topAnchor.constraint(equalTo: signInSignUpButton.bottomAnchor, constant: 20),
+        ])
         
+        // hide the name field initially (logging in)
+        nameField.isHidden = true
     }
-
-
-
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}

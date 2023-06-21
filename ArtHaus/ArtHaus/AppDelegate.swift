@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseCore
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,6 +15,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        FirebaseApp.configure()
+        
+        // Create a window that is the same size as the screen
+        let window = UIWindow(frame: UIScreen.main.bounds)
+        // Create a instance of the ViewController
+        let loginViewController = LoginViewController()
+        // Assign the instance of ViewController to the rootViewController property of the window
+        window.rootViewController = UINavigationController(rootViewController: loginViewController)
+        
         return true
     }
 
